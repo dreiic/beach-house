@@ -1,13 +1,10 @@
 import { Reveal } from "./Reveal";
-
-const items = [
-  { k: "01", t: "On the sand", d: "Beachfront on Pearl Beach, Velika Plaža" },
-  { k: "02", t: "Pine forest", d: "Hidden under century-old Mediterranean pines" },
-  { k: "03", t: "For 2 or 6", d: "VIP couples cabin & family bungalow" },
-  { k: "04", t: "Direct booking", d: "No commission. Reply within a few hours." },
-];
+import { useSiteContent } from "./siteContent";
 
 export function TrustStrip() {
+  const { content } = useSiteContent();
+  const { items } = content.trust;
+
   return (
     <section className="border-y border-border bg-cream">
       <div className="mx-auto grid max-w-[1400px] grid-cols-2 md:grid-cols-4 px-0 md:px-10">
@@ -22,7 +19,9 @@ export function TrustStrip() {
               i < 2 ? "border-b border-border md:border-b-0" : ""
             }`}
           >
-            <span className="text-[10px] uppercase tracking-[0.32em] text-muted-foreground">{it.k}</span>
+            <span className="text-[10px] uppercase tracking-[0.32em] text-muted-foreground">
+              {it.k}
+            </span>
             <span className="font-serif text-xl tracking-tight">{it.t}</span>
             <span className="text-[13px] leading-relaxed text-muted-foreground">{it.d}</span>
           </Reveal>

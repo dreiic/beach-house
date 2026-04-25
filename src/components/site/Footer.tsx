@@ -1,35 +1,45 @@
+import { Reveal } from "./Reveal";
+import { useSiteContent } from "./siteContent";
+
 export function Footer() {
+  const { content } = useSiteContent();
+  const { footer } = content;
+
   return (
     <footer className="bg-foreground text-background pt-28 pb-10">
       <div className="mx-auto max-w-[1400px] px-6 md:px-10">
         <div className="grid grid-cols-12 gap-y-12 md:gap-x-12 pb-20 border-b border-background/20">
-          <div className="col-span-12 md:col-span-6">
+          <Reveal className="col-span-12 md:col-span-6">
             <h3 className="font-serif text-[44px] md:text-[80px] leading-[0.95] tracking-[-0.02em] max-w-2xl">
-              Bungalovi<br />
-              <em className="italic font-normal text-background/80">Resorthome.</em>
+              {footer.title}
+              <br />
+              <em className="italic font-normal text-background/80">{footer.emphasis}</em>
             </h3>
             <p className="mt-8 max-w-md text-[14px] leading-relaxed text-background/70">
-              Private bungalows on Pearl Beach, Velika Plaža — Ulcinj, Montenegro.
-              Family-run, beachfront, hidden in the pines.
+              {footer.text}
             </p>
-          </div>
+          </Reveal>
 
-          <div className="col-span-6 md:col-span-3">
-            <p className="text-[10px] uppercase tracking-[0.32em] text-background/50 mb-6">Contact</p>
+          <Reveal delay={120} className="col-span-6 md:col-span-3">
+            <p className="text-[10px] uppercase tracking-[0.32em] text-background/50 mb-6">
+              {footer.contact}
+            </p>
             <ul className="space-y-3 text-[14px]">
               <li>
-                <a href="tel:+38263461761" className="link-underline">
-                  +382 63 461 761
+                <a href={footer.phoneHref} className="link-underline">
+                  {footer.phone}
                 </a>
               </li>
-              <li className="text-background/60">Viber · WhatsApp</li>
-              <li className="text-background/60 pt-2">Pearl Beach, Velika Plaža</li>
-              <li className="text-background/60">85360 Ulcinj, Montenegro</li>
+              <li className="text-background/60">{footer.messaging}</li>
+              <li className="text-background/60 pt-2">{footer.address1}</li>
+              <li className="text-background/60">{footer.address2}</li>
             </ul>
-          </div>
+          </Reveal>
 
-          <div className="col-span-6 md:col-span-3">
-            <p className="text-[10px] uppercase tracking-[0.32em] text-background/50 mb-6">Follow</p>
+          <Reveal delay={220} className="col-span-6 md:col-span-3">
+            <p className="text-[10px] uppercase tracking-[0.32em] text-background/50 mb-6">
+              {footer.follow}
+            </p>
             <ul className="space-y-3 text-[14px]">
               <li>
                 <a
@@ -38,27 +48,41 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="link-underline"
                 >
-                  Instagram
+                  @bungalov__resorthome
                 </a>
               </li>
               <li>
                 <a
-                  href="https://www.openstreetmap.org/?mlat=41.9285&mlon=19.3171#map=14/41.9285/19.3171"
+                  href={footer.facebookHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="link-underline"
                 >
-                  Map
+                  {footer.facebook}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.openstreetmap.org/?mlat=41.9064249&mlon=19.2610213#map=15/41.9064249/19.2610213"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-underline"
+                >
+                  {footer.map}
                 </a>
               </li>
             </ul>
-          </div>
+          </Reveal>
         </div>
 
-        <div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-[11px] uppercase tracking-[0.32em] text-background/50">
+        <Reveal
+          delay={120}
+          y={10}
+          className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-[11px] uppercase tracking-[0.32em] text-background/50"
+        >
           <span>© {new Date().getFullYear()} Bungalovi Resorthome</span>
-          <span>Booking 10 / 10 · Direct only · No commission</span>
-        </div>
+          <span>{footer.bottom}</span>
+        </Reveal>
       </div>
     </footer>
   );
