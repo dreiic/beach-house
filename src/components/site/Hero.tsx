@@ -67,8 +67,8 @@ export function Hero() {
     <section
       ref={sectionRef}
       aria-label="Hero"
-      className="relative w-full"
-      style={{ height: isMobile ? "100svh" : "210vh" }}
+      className="relative w-full overflow-x-clip"
+      style={{ height: isMobile ? "170svh" : "210vh" }}
     >
       <div className="sticky top-0 h-[100svh] w-full overflow-hidden bg-cream">
         <div className="absolute inset-0 grain pointer-events-none">
@@ -111,10 +111,10 @@ export function Hero() {
             aria-hidden
             width={1920}
             height={800}
-            className="absolute bottom-[2%] right-[-10%] z-20 h-[30%] md:h-[60%] w-auto max-w-none object-contain object-bottom"
+            className="absolute bottom-[2%] right-[-26%] z-20 h-[26%] md:right-[-10%] md:h-[60%] w-auto max-w-none object-contain object-bottom"
             style={{
               transform: isMobile
-                ? `translate3d(0, ${e * 10}px, 0)`
+                ? `translate3d(0, ${e * 12}px, 0) scale(1.02)`
                 : `translate3d(${bungX}%, ${bungY}px, 0) scale(${bungScale})`,
               filter: "drop-shadow(0 30px 30px oklch(0.22 0.012 60 / 0.12))",
               willChange: "transform",
@@ -127,7 +127,7 @@ export function Hero() {
         </div>
 
         <div className="relative z-40 flex h-full w-full flex-col">
-          <div className="mx-auto w-full max-w-[1400px] px-6 md:px-10 pt-[20svh] md:pt-[22svh]">
+          <div className="mx-auto w-full max-w-[1400px] px-4 md:px-10 pt-[18svh] md:pt-[22svh]">
             <div
               className="max-w-[640px] md:max-w-[720px]"
               style={{
@@ -138,7 +138,7 @@ export function Hero() {
               <p className="mb-6 text-[11px] uppercase tracking-[0.42em] text-foreground/60">
                 {hero.eyebrow}
               </p>
-              <h1 className="font-serif text-[44px] sm:text-[60px] md:text-[84px] leading-[0.98] tracking-[-0.02em] text-foreground">
+              <h1 className="font-serif text-[36px] sm:text-[60px] md:text-[84px] leading-[1.02] sm:leading-[0.98] tracking-[-0.02em] text-foreground">
                 {hero.title}
                 <br />
                 <em className="italic font-normal text-foreground/85">{hero.emphasis}</em>
@@ -146,7 +146,7 @@ export function Hero() {
             </div>
 
             <div
-              className="mt-8 max-w-[440px] text-[15px] leading-relaxed text-foreground/75"
+              className="mt-6 md:mt-8 max-w-[440px] text-[14px] md:text-[15px] leading-relaxed text-foreground/75"
               style={{
                 opacity: subOp,
                 transform: `translate3d(0, ${subY}px, 0)`,
@@ -156,7 +156,7 @@ export function Hero() {
             </div>
 
             <div
-              className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4"
+              className="mt-7 md:mt-8 flex flex-wrap items-center gap-x-6 md:gap-x-8 gap-y-4"
               style={{
                 opacity: ctaOp,
                 transform: `translate3d(0, ${ctaY}px, 0)`,
@@ -164,13 +164,13 @@ export function Hero() {
             >
               <a
                 href="#inquiry"
-                className="group inline-flex items-center gap-3 border border-foreground bg-foreground px-7 py-4 text-[12px] uppercase tracking-[0.28em] text-background transition-colors duration-500 hover:bg-transparent hover:text-foreground"
+                className="group inline-flex items-center gap-3 border border-foreground bg-foreground px-5 md:px-7 py-3.5 md:py-4 text-[11px] md:text-[12px] uppercase tracking-[0.22em] md:tracking-[0.28em] text-background transition-colors duration-500 hover:bg-transparent hover:text-foreground"
               >
                 {hero.primary} →
               </a>
               <a
                 href="#bungalows"
-                className="text-[12px] uppercase tracking-[0.28em] text-foreground/80"
+                className="text-[11px] md:text-[12px] uppercase tracking-[0.22em] md:tracking-[0.28em] text-foreground/80"
               >
                 {hero.secondary}
               </a>
@@ -179,7 +179,7 @@ export function Hero() {
 
           <div className="flex-1" />
 
-          <div className="mx-auto w-full max-w-[1400px] px-6 md:px-10 pb-7 flex justify-between text-[10px] uppercase tracking-[0.32em] text-foreground/55">
+          <div className="mx-auto w-full max-w-[1400px] px-4 md:px-10 pb-7 flex justify-between text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.32em] text-foreground/55">
             <span>{hero.metaLeft}</span>
             <span className="hidden md:inline">{hero.metaCenter}</span>
             <span>{hero.metaRight}</span>
