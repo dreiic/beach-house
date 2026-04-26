@@ -50,7 +50,7 @@ export function Hero() {
   const skyY = e * 4;
   const seaY = e * 6;
   const bungY = e * 10;
-  const seaLift = isMobile ? -24 : -66;
+  const seaLift = isMobile ? -52 : -66;
 
   const skyScale = 1.04 - e * 0.02;
   const seaScale = 1.12 - e * 0.02;
@@ -107,10 +107,14 @@ export function Hero() {
             aria-hidden
             width={1920}
             height={800}
-            className="absolute bottom-[2%] right-[-26%] z-20 h-[26%] md:right-[-10%] md:h-[60%] w-auto max-w-none object-contain object-bottom"
+            className="absolute bottom-[7%] right-[-10%] z-[35] h-[34%] md:bottom-[2%] md:right-[-10%] md:z-20 md:h-[60%] w-auto max-w-none object-contain object-bottom"
             style={{
-              transform: `translate3d(${bungX}%, ${bungY}px, 0) scale(${bungScale})`,
-              filter: "drop-shadow(0 30px 30px oklch(0.22 0.012 60 / 0.12))",
+              transform: isMobile
+                ? `translate3d(${bungX}%, ${bungY}px, 0) scale(1.08)`
+                : `translate3d(${bungX}%, ${bungY}px, 0) scale(${bungScale})`,
+              filter: isMobile
+                ? "drop-shadow(0 22px 24px oklch(0.22 0.012 60 / 0.16))"
+                : "drop-shadow(0 30px 30px oklch(0.22 0.012 60 / 0.12))",
               willChange: "transform",
             }}
           />
