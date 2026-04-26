@@ -1,10 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
 import { useSiteContent } from "./siteContent";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const { content, language, setLanguage } = useSiteContent();
   const { nav } = content;
 
@@ -17,7 +19,19 @@ export function Nav() {
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   return (
@@ -37,7 +51,7 @@ export function Nav() {
             : "py-6 bg-transparent border-b border-transparent"
         }`}
       >
-        <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 md:px-10">
+        <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-4 md:px-10">
           <Link to="/" className="flex items-baseline gap-2">
             <span className="font-serif text-lg tracking-tight">{nav.brand}</span>
             <span className="text-[10px] uppercase tracking-[0.32em] text-muted-foreground">
@@ -66,7 +80,7 @@ export function Nav() {
               </a>
             </li>
           </ul>
-          <div className="flex items-center gap-5">
+          <div className="hidden md:flex items-center gap-5">
             <button
               type="button"
               aria-label={nav.languageLabel}
@@ -111,7 +125,75 @@ export function Nav() {
               </span>
             </a>
           </div>
+
+          <div className="flex items-center gap-2 md:hidden">
+            <button
+              type="button"
+              aria-label={nav.languageLabel}
+              onClick={() => setLanguage(language === "eng" ? "mne" : "eng")}
+              className="rounded-full border border-foreground/20 bg-background/70 px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] text-foreground/80"
+            >
+              {language.toUpperCase()}
+            </button>
+
+            <button
+              type="button"
+              aria-expanded={mobileOpen}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              onClick={() => setMobileOpen((prev) => !prev)}
+              className="inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-background/80 px-3 py-2 text-[10px] uppercase tracking-[0.2em] text-foreground/80"
+            >
+              {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+              Menu
+            </button>
+          </div>
         </nav>
+
+        <div
+          className={`md:hidden overflow-hidden border-t border-border/60 bg-background/95 px-4 backdrop-blur-md transition-[max-height,opacity,padding] duration-300 ${
+            mobileOpen ? "max-h-[380px] py-5 opacity-100" : "max-h-0 py-0 opacity-0"
+          }`}
+        >
+          <div className="mx-auto flex max-w-[1400px] flex-col gap-5 text-[12px] uppercase tracking-[0.2em] text-foreground/85">
+            <a
+              href="#bungalows"
+              className="link-underline w-fit"
+              onClick={() => setMobileOpen(false)}
+            >
+              {nav.houses}
+            </a>
+            <a
+              href="#experience"
+              className="link-underline w-fit"
+              onClick={() => setMobileOpen(false)}
+            >
+              {nav.experience}
+            </a>
+            <a
+              href="#gallery"
+              className="link-underline w-fit"
+              onClick={() => setMobileOpen(false)}
+            >
+              {nav.gallery}
+            </a>
+            <a
+              href="#location"
+              className="link-underline w-fit"
+              onClick={() => setMobileOpen(false)}
+            >
+              {nav.location}
+            </a>
+            <div className="h-px w-full bg-border/80" />
+            <a
+              href="#inquiry"
+              onClick={() => setMobileOpen(false)}
+              className="inline-flex w-fit items-center gap-2 text-[11px] tracking-[0.22em]"
+            >
+              <span className="link-underline">{nav.reserve}</span>
+              <span aria-hidden>→</span>
+            </a>
+          </div>
+        </div>
       </header>
     </>
   );
