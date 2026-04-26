@@ -64,7 +64,7 @@ export const Route = createRootRoute({
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://montenegrobeachresort.com" },
-      { property: "og:image", content: "https://montenegrobeachresort.com/og-image.jpg" },
+      { property: "og:image", content: "https://montenegrobeachresort.com/og-image.jpg?v=2" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { property: "og:site_name", content: "Montenegro Beach Resort" },
