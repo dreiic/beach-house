@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import bathroom from "@/assets/resort-bathroom.jpg";
 import aerialBeach from "@/assets/resort-aerial-beach.jpg";
 import blueBedroom from "@/assets/resort-blue-bedroom.jpg";
+import cardakVip from "@/assets/resort-cardak-vip.jpg";
 import heroResort from "@/assets/resort-hero.jpg";
 import kitchenDetail from "@/assets/resort-kitchen-detail.jpg";
 import longTerrace from "@/assets/resort-long-terrace.jpg";
 import nightExterior from "@/assets/resort-night-exterior.jpg";
+import nightRow from "@/assets/resort-night-row.jpg";
 import porchDetail from "@/assets/resort-porch-detail.jpg";
 import redBedroom from "@/assets/resort-red-bedroom.jpg";
 import terraceBedroom from "@/assets/resort-terrace-bedroom.jpg";
+import yardEvening from "@/assets/resort-yard-evening.jpg";
 import { Reveal } from "./Reveal";
 import { useSiteContent } from "./siteContent";
 
@@ -40,11 +43,20 @@ const items: Item[] = [
     aspect: "aspect-[4/3] md:aspect-auto",
   },
   {
+    src: cardakVip,
+    alt: "Čardak VIP apartment joined from two apartments",
+    w: 1800,
+    h: 2400,
+    className: "md:col-span-5 md:row-span-4",
+    aspect: "aspect-[4/5] md:aspect-auto",
+    position: "object-[50%_58%]",
+  },
+  {
     src: longTerrace,
     alt: "Long wooden terrace facing the yard",
     w: 1800,
     h: 1199,
-    className: "md:col-span-5 md:row-span-4",
+    className: "md:col-span-4 md:row-span-3",
     aspect: "aspect-[4/5] md:aspect-auto",
     position: "object-[52%_50%]",
   },
@@ -92,19 +104,36 @@ const items: Item[] = [
     position: "object-[55%_50%]",
   },
   {
+    src: nightRow,
+    alt: "Bungalows lit among the pine trees",
+    w: 1800,
+    h: 1199,
+    className: "sm:col-span-2 md:col-span-7 md:row-span-4",
+    aspect: "aspect-[16/10] md:aspect-auto",
+  },
+  {
     src: bathroom,
     alt: "Bright private bathroom",
     w: 1600,
     h: 1066,
-    className: "md:col-span-4 md:row-span-3",
-    aspect: "aspect-square md:aspect-auto",
+    className: "md:col-span-5 md:row-span-4",
+    aspect: "aspect-[4/3] md:aspect-auto",
+  },
+  {
+    src: yardEvening,
+    alt: "Sunny yard between the bungalows",
+    w: 1800,
+    h: 1199,
+    className: "md:col-span-4 md:row-span-4",
+    aspect: "aspect-[4/5] md:aspect-auto",
+    position: "object-[48%_50%]",
   },
   {
     src: nightExterior,
     alt: "Bungalows glowing at night",
     w: 1800,
     h: 1199,
-    className: "sm:col-span-2 md:col-span-12 md:row-span-4",
+    className: "sm:col-span-2 md:col-span-8 md:row-span-4",
     aspect: "aspect-[16/10] md:aspect-auto",
   },
 ];
