@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <LanguageProvider>
-      <main className="bg-background text-foreground antialiased">
+      <main className="bg-background text-foreground antialiased overflow-x-clip">
         <Nav />
         <Hero />
         <TrustStrip />

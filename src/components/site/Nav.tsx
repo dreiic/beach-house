@@ -1,12 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useSiteContent } from "./siteContent";
 import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const { content, language, setLanguage } = useSiteContent();
   const { nav } = content;
 
@@ -19,7 +20,19 @@ export function Nav() {
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   return (
@@ -124,60 +137,64 @@ export function Nav() {
               {language.toUpperCase()}
             </button>
 
-            <Sheet>
-              <SheetTrigger asChild>
-                <button
-                  type="button"
-                  aria-label="Open menu"
-                  className="inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-background/80 px-3 py-2 text-[10px] uppercase tracking-[0.2em] text-foreground/80"
-                >
-                  <Menu className="h-4 w-4" />
-                  Menu
-                </button>
-              </SheetTrigger>
-              <SheetContent
-                side="right"
-                className="w-[84vw] border-l border-border/70 bg-background/95 px-6 pb-8 pt-14 backdrop-blur-md"
-              >
-                <SheetTitle className="mb-8 font-serif text-xl tracking-tight">
-                  {nav.brand}
-                </SheetTitle>
-                <div className="flex flex-col gap-6 text-[13px] uppercase tracking-[0.22em] text-foreground/85">
-                  <SheetClose asChild>
-                    <a href="#bungalows" className="link-underline w-fit">
-                      {nav.houses}
-                    </a>
-                  </SheetClose>
-                  <SheetClose asChild>
-                    <a href="#experience" className="link-underline w-fit">
-                      {nav.experience}
-                    </a>
-                  </SheetClose>
-                  <SheetClose asChild>
-                    <a href="#gallery" className="link-underline w-fit">
-                      {nav.gallery}
-                    </a>
-                  </SheetClose>
-                  <SheetClose asChild>
-                    <a href="#location" className="link-underline w-fit">
-                      {nav.location}
-                    </a>
-                  </SheetClose>
-                </div>
-                <div className="mt-10 h-px w-full bg-border" />
-                <SheetClose asChild>
-                  <a
-                    href="#inquiry"
-                    className="mt-8 inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.22em]"
-                  >
-                    <span className="link-underline">{nav.reserve}</span>
-                    <span aria-hidden>→</span>
-                  </a>
-                </SheetClose>
-              </SheetContent>
-            </Sheet>
+            <button
+              type="button"
+              aria-expanded={mobileOpen}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              onClick={() => setMobileOpen((prev) => !prev)}
+              className="inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-background/80 px-3 py-2 text-[10px] uppercase tracking-[0.2em] text-foreground/80"
+            >
+              {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+              Menu
+            </button>
           </div>
         </nav>
+
+        <div
+          className={`md:hidden overflow-hidden border-t border-border/60 bg-background/95 px-4 backdrop-blur-md transition-[max-height,opacity,padding] duration-300 ${
+            mobileOpen ? "max-h-[380px] py-5 opacity-100" : "max-h-0 py-0 opacity-0"
+          }`}
+        >
+          <div className="mx-auto flex max-w-[1400px] flex-col gap-5 text-[12px] uppercase tracking-[0.2em] text-foreground/85">
+            <a
+              href="#bungalows"
+              className="link-underline w-fit"
+              onClick={() => setMobileOpen(false)}
+            >
+              {nav.houses}
+            </a>
+            <a
+              href="#experience"
+              className="link-underline w-fit"
+              onClick={() => setMobileOpen(false)}
+            >
+              {nav.experience}
+            </a>
+            <a
+              href="#gallery"
+              className="link-underline w-fit"
+              onClick={() => setMobileOpen(false)}
+            >
+              {nav.gallery}
+            </a>
+            <a
+              href="#location"
+              className="link-underline w-fit"
+              onClick={() => setMobileOpen(false)}
+            >
+              {nav.location}
+            </a>
+            <div className="h-px w-full bg-border/80" />
+            <a
+              href="#inquiry"
+              onClick={() => setMobileOpen(false)}
+              className="inline-flex w-fit items-center gap-2 text-[11px] tracking-[0.22em]"
+            >
+              <span className="link-underline">{nav.reserve}</span>
+              <span aria-hidden>→</span>
+            </a>
+          </div>
+        </div>
       </header>
     </>
   );

@@ -68,7 +68,7 @@ export function Hero() {
       ref={sectionRef}
       aria-label="Hero"
       className="relative w-full overflow-x-clip"
-      style={{ height: isMobile ? "170svh" : "210vh" }}
+      style={{ height: isMobile ? "190svh" : "210vh" }}
     >
       <div className="sticky top-0 h-[100svh] w-full overflow-hidden bg-cream">
         <div className="absolute inset-0 grain pointer-events-none">
@@ -80,9 +80,7 @@ export function Hero() {
             height={1088}
             className="absolute inset-0 z-0 h-full w-full object-cover"
             style={{
-              transform: isMobile
-                ? `scale(${1.08 - e * 0.02})`
-                : `translate3d(${skyX}%, ${skyY}px, 0) scale(${skyScale * 1.15})`,
+              transform: `translate3d(${skyX}%, ${skyY}px, 0) scale(${skyScale * 1.15})`,
               filter: "blur(2px)",
               willChange: "transform",
             }}
@@ -96,9 +94,7 @@ export function Hero() {
             height={900}
             className="absolute inset-0 z-10 h-full w-full object-cover object-bottom"
             style={{
-              transform: isMobile
-                ? `translate3d(0, ${seaLift + e * 5}px, 0) scale(${seaScale})`
-                : `translate3d(${seaX}%, ${seaLift + seaY}px, 0) scale(${seaScale})`,
+              transform: `translate3d(${seaX}%, ${seaLift + seaY}px, 0) scale(${seaScale})`,
               filter: "blur(0.4px)",
               willChange: "transform",
             }}
@@ -113,9 +109,7 @@ export function Hero() {
             height={800}
             className="absolute bottom-[2%] right-[-26%] z-20 h-[26%] md:right-[-10%] md:h-[60%] w-auto max-w-none object-contain object-bottom"
             style={{
-              transform: isMobile
-                ? `translate3d(0, ${e * 12}px, 0) scale(1.02)`
-                : `translate3d(${bungX}%, ${bungY}px, 0) scale(${bungScale})`,
+              transform: `translate3d(${bungX}%, ${bungY}px, 0) scale(${bungScale})`,
               filter: "drop-shadow(0 30px 30px oklch(0.22 0.012 60 / 0.12))",
               willChange: "transform",
             }}
