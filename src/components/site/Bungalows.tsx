@@ -1,6 +1,7 @@
 import b1 from "@/assets/resort-bungalows-front.jpg";
 import b2 from "@/assets/resort-terrace-lounge.jpg";
-import b3 from "@/assets/resort-blue-bedroom.jpg";
+import b3 from "@/assets/resort-hero.jpg";
+
 import { Reveal } from "./Reveal";
 import { useSiteContent } from "./siteContent";
 

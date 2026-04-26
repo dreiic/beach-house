@@ -3,7 +3,7 @@ import bathroom from "@/assets/resort-bathroom.jpg";
 import aerialBeach from "@/assets/resort-aerial-beach.jpg";
 import blueBedroom from "@/assets/resort-blue-bedroom.jpg";
 import cardakVip from "@/assets/resort-cardak-vip.jpg";
-import heroResort from "@/assets/resort-hero.jpg";
+import heroResort from "@/assets/ddd.jpeg";
 import kitchenDetail from "@/assets/resort-kitchen-detail.jpg";
 import longTerrace from "@/assets/resort-long-terrace.jpg";
 import nightExterior from "@/assets/resort-night-exterior.jpg";
