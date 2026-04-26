@@ -107,10 +107,10 @@ export function Hero() {
             aria-hidden
             width={1920}
             height={800}
-            className="absolute bottom-[7%] right-[-10%] z-[35] h-[34%] md:bottom-[2%] md:right-[-10%] md:z-20 md:h-[60%] w-auto max-w-none object-contain object-bottom"
+            className="absolute bottom-[11%] right-[-8%] z-[35] h-[38%] md:bottom-[2%] md:right-[-10%] md:z-20 md:h-[60%] w-auto max-w-none object-contain object-bottom"
             style={{
               transform: isMobile
-                ? `translate3d(${bungX}%, ${bungY}px, 0) scale(1.08)`
+                ? `translate3d(${bungX}%, ${bungY}px, 0) scale(1.12)`
                 : `translate3d(${bungX}%, ${bungY}px, 0) scale(${bungScale})`,
               filter: isMobile
                 ? "drop-shadow(0 22px 24px oklch(0.22 0.012 60 / 0.16))"
