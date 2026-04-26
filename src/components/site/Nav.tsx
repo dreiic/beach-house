@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { Menu } from "lucide-react";
 import { useSiteContent } from "./siteContent";
+import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -37,7 +39,7 @@ export function Nav() {
             : "py-6 bg-transparent border-b border-transparent"
         }`}
       >
-        <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 md:px-10">
+        <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-4 md:px-10">
           <Link to="/" className="flex items-baseline gap-2">
             <span className="font-serif text-lg tracking-tight">{nav.brand}</span>
             <span className="text-[10px] uppercase tracking-[0.32em] text-muted-foreground">
@@ -66,7 +68,7 @@ export function Nav() {
               </a>
             </li>
           </ul>
-          <div className="flex items-center gap-5">
+          <div className="hidden md:flex items-center gap-5">
             <button
               type="button"
               aria-label={nav.languageLabel}
@@ -110,6 +112,70 @@ export function Nav() {
                 →
               </span>
             </a>
+          </div>
+
+          <div className="flex items-center gap-2 md:hidden">
+            <button
+              type="button"
+              aria-label={nav.languageLabel}
+              onClick={() => setLanguage(language === "eng" ? "mne" : "eng")}
+              className="rounded-full border border-foreground/20 bg-background/70 px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] text-foreground/80"
+            >
+              {language.toUpperCase()}
+            </button>
+
+            <Sheet>
+              <SheetTrigger asChild>
+                <button
+                  type="button"
+                  aria-label="Open menu"
+                  className="inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-background/80 px-3 py-2 text-[10px] uppercase tracking-[0.2em] text-foreground/80"
+                >
+                  <Menu className="h-4 w-4" />
+                  Menu
+                </button>
+              </SheetTrigger>
+              <SheetContent
+                side="right"
+                className="w-[84vw] border-l border-border/70 bg-background/95 px-6 pb-8 pt-14 backdrop-blur-md"
+              >
+                <SheetTitle className="mb-8 font-serif text-xl tracking-tight">
+                  {nav.brand}
+                </SheetTitle>
+                <div className="flex flex-col gap-6 text-[13px] uppercase tracking-[0.22em] text-foreground/85">
+                  <SheetClose asChild>
+                    <a href="#bungalows" className="link-underline w-fit">
+                      {nav.houses}
+                    </a>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <a href="#experience" className="link-underline w-fit">
+                      {nav.experience}
+                    </a>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <a href="#gallery" className="link-underline w-fit">
+                      {nav.gallery}
+                    </a>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <a href="#location" className="link-underline w-fit">
+                      {nav.location}
+                    </a>
+                  </SheetClose>
+                </div>
+                <div className="mt-10 h-px w-full bg-border" />
+                <SheetClose asChild>
+                  <a
+                    href="#inquiry"
+                    className="mt-8 inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.22em]"
+                  >
+                    <span className="link-underline">{nav.reserve}</span>
+                    <span aria-hidden>→</span>
+                  </a>
+                </SheetClose>
+              </SheetContent>
+            </Sheet>
           </div>
         </nav>
       </header>
