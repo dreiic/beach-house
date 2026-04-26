@@ -45,7 +45,7 @@ export function Inquiry() {
                   `${inquiry.fields.message}: ${value("message") || "-"}`,
                 ];
                 window.open(
-                  `https://wa.me/382696346761?text=${encodeURIComponent(lines.join("\n"))}`,
+                  `https://wa.me/38263461761?text=${encodeURIComponent(lines.join("\n"))}`,
                   "_blank",
                   "noopener,noreferrer",
                 );

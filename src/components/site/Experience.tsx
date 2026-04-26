@@ -1,6 +1,6 @@
-import morningAi from "@/assets/experience-morning-ai.png";
-import terraceAi from "@/assets/experience-terrace-ai.png";
-import yardAi from "@/assets/experience-yard-ai.png";
+import aerialBeach from "@/assets/resort-aerial-beach.jpg";
+import familyTerrace from "@/assets/resort-family-terrace.jpg";
+import terraceBreakfast from "@/assets/resort-terrace-breakfast.jpg";
 import { Reveal } from "./Reveal";
 import { useSiteContent } from "./siteContent";
 
@@ -14,12 +14,12 @@ export function Experience() {
         <div className="grid grid-cols-12 gap-y-14 md:gap-x-12 md:gap-y-24">
           <Reveal className="col-span-12 md:col-span-5">
             <img
-              src={terraceAi}
+              src={familyTerrace}
               alt={experience.imageAltTop}
               loading="lazy"
-              width={1024}
-              height={1536}
-              className="w-full aspect-[4/5] object-cover"
+              width={1800}
+              height={1199}
+              className="w-full aspect-[4/5] object-cover object-[52%_50%]"
             />
           </Reveal>
 
@@ -54,12 +54,12 @@ export function Experience() {
 
           <Reveal className="col-span-12 md:col-span-6 md:col-start-6 md:row-start-2" y={24}>
             <img
-              src={yardAi}
+              src={aerialBeach}
               alt={experience.imageAltBottom}
               loading="lazy"
-              width={1536}
-              height={1024}
-              className="w-full aspect-[6/4] object-cover"
+              width={2200}
+              height={1650}
+              className="w-full aspect-[6/4] object-cover object-center"
             />
           </Reveal>
 
@@ -67,12 +67,12 @@ export function Experience() {
             <div className="grid grid-cols-12 gap-y-8 md:gap-x-12 items-center">
               <div className="col-span-8 sm:col-span-6 md:col-span-4">
                 <img
-                  src={morningAi}
+                  src={terraceBreakfast}
                   alt={experience.imageAltSmall}
                   loading="lazy"
-                  width={933}
-                  height={1200}
-                  className="w-full aspect-[3/4] object-cover"
+                  width={1800}
+                  height={1199}
+                  className="w-full aspect-[3/4] object-cover object-[58%_50%]"
                 />
               </div>
               <div className="col-span-12 md:col-span-6">

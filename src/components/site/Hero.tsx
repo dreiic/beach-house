@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import sky from "@/assets/hero-sky.jpg";
 import sea from "@/assets/hero-sea.png";
 import bungalows from "@/assets/hero-bungalows.png";
+import seaPinesBackground from "@/assets/resort-sea-pines-background.jpg";
 import { useSiteContent } from "./siteContent";
 
 export function Hero() {
@@ -82,6 +83,20 @@ export function Hero() {
             style={{
               transform: `translate3d(${skyX}%, ${skyY}px, 0) scale(${skyScale * 1.15})`,
               filter: "blur(2px)",
+              willChange: "transform",
+            }}
+          />
+
+          <img
+            src={seaPinesBackground}
+            alt=""
+            aria-hidden
+            width={2200}
+            height={1466}
+            className="absolute inset-0 z-[5] h-full w-full object-cover object-center opacity-20 md:opacity-25"
+            style={{
+              transform: `translate3d(${seaX * 0.5}%, ${skyY + 8}px, 0) scale(${skyScale * 1.05})`,
+              filter: "saturate(0.95) contrast(0.95)",
               willChange: "transform",
             }}
           />

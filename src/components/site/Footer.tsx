@@ -81,7 +81,17 @@ export function Footer() {
           className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-[11px] uppercase tracking-[0.32em] text-background/50"
         >
           <span>© {new Date().getFullYear()} Bungalovi Resorthome</span>
-          <span>{footer.bottom}</span>
+          <span className="normal-case tracking-[0.18em]">
+            powered by{" "}
+            <a
+              href="https://nextup-agency.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-underline text-background/70 transition-colors duration-300 hover:text-background"
+            >
+              NextUp
+            </a>
+          </span>
         </Reveal>
       </div>
     </footer>

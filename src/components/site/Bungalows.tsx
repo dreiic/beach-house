@@ -1,11 +1,12 @@
-import b1 from "@/assets/bungalow-1.jpg";
-import b2 from "@/assets/bungalow-2.jpg";
-import b3 from "@/assets/bungalow-3.jpg";
+import b1 from "@/assets/resort-bungalows-front.jpg";
+import b2 from "@/assets/resort-terrace-lounge.jpg";
+import b3 from "@/assets/resort-blue-bedroom.jpg";
 import { Reveal } from "./Reveal";
 import { useSiteContent } from "./siteContent";
 
 const images = [b1, b2, b3];
 const aligns = ["left", "right", "left"] as const;
+const positions = ["object-center", "object-[56%_50%]", "object-center"] as const;
 
 export function Bungalows() {
   const { content } = useSiteContent();
@@ -45,9 +46,9 @@ export function Bungalows() {
                     src={images[i]}
                     alt={r.name}
                     loading="lazy"
-                    width={1024}
-                    height={1280}
-                    className="h-full w-full object-cover transition-transform duration-[1600ms] ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.04]"
+                    width={1800}
+                    height={1200}
+                    className={`h-full w-full object-cover ${positions[i]} transition-transform duration-[1600ms] ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.04]`}
                   />
                   <span className="absolute left-5 top-5 text-[10px] uppercase tracking-[0.32em] text-background mix-blend-difference">
                     N°{r.n}

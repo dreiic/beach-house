@@ -86,28 +86,24 @@ export function Nav() {
               type="button"
               aria-label={nav.languageLabel}
               onClick={() => setLanguage(language === "eng" ? "mne" : "eng")}
-              className="group relative grid w-[104px] cursor-pointer grid-cols-2 overflow-hidden rounded-full border border-foreground/15 bg-background/40 p-1 text-[11px] uppercase tracking-[0.18em] text-foreground/70 shadow-sm transition-[background-color,border-color,transform] duration-300 hover:border-foreground/30 hover:bg-background/70 active:scale-[0.98]"
+              className="group relative grid h-9 w-[108px] cursor-pointer grid-cols-2 place-items-center overflow-hidden rounded-full border border-foreground/15 bg-background/40 p-1 text-[11px] uppercase leading-none tracking-[0.18em] text-foreground/70 shadow-sm transition-[background-color,border-color,transform] duration-300 hover:border-foreground/30 hover:bg-background/70 active:scale-[0.98]"
             >
               <span
                 aria-hidden
                 className={`absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-full bg-foreground/10 shadow-lift transition-transform duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] ${
-                  language === "mne" ? "translate-x-[calc(100%+0.25rem)]" : "translate-x-0"
+                  language === "mne" ? "translate-x-full" : "translate-x-0"
                 }`}
               />
               <span
-                className={`relative z-10 cursor-pointer text-center transition-[color,transform] duration-500 ${
-                  language === "eng"
-                    ? "-translate-y-0.5 text-foreground"
-                    : "translate-y-0 text-muted-foreground"
+                className={`relative z-10 cursor-pointer text-center transition-colors duration-500 ${
+                  language === "eng" ? "text-foreground" : "text-muted-foreground"
                 }`}
               >
                 ENG
               </span>
               <span
-                className={`relative z-10 cursor-pointer text-center transition-[color,transform] duration-500 ${
-                  language === "mne"
-                    ? "-translate-y-0.5 text-foreground"
-                    : "translate-y-0 text-muted-foreground"
+                className={`relative z-10 cursor-pointer text-center transition-colors duration-500 ${
+                  language === "mne" ? "text-foreground" : "text-muted-foreground"
                 }`}
               >
                 MNE
