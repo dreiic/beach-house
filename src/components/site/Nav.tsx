@@ -1,0 +1,197 @@
+import { Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
+import { useSiteContent } from "./siteContent";
+import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+
+export function Nav() {
+  const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const { content, language, setLanguage } = useSiteContent();
+  const { nav } = content;
+
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 32);
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(h > 0 ? Math.min(1, y / h) : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  return (
+    <>
+      {/* Top hairline scroll progress */}
+      <div aria-hidden className="fixed left-0 top-0 z-[60] h-px w-full bg-foreground/10">
+        <div
+          className="h-full origin-left bg-foreground"
+          style={{ transform: `scaleX(${progress})`, transition: "transform 80ms linear" }}
+        />
+      </div>
+
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-[backdrop-filter,background-color,padding,border-color] duration-500 ${
+          scrolled
+            ? "py-3 backdrop-blur-md bg-background/75 border-b border-border/60"
+            : "py-6 bg-transparent border-b border-transparent"
+        }`}
+      >
+        <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-4 md:px-10">
+          <Link to="/" className="flex items-baseline gap-2">
+            <span className="font-serif text-lg tracking-tight">{nav.brand}</span>
+            <span className="text-[10px] uppercase tracking-[0.32em] text-muted-foreground">
+              {nav.suffix}
+            </span>
+          </Link>
+          <ul className="hidden md:flex items-center gap-10 text-[12px] uppercase tracking-[0.22em] text-foreground/80">
+            <li>
+              <a href="#bungalows" className="link-underline">
+                {nav.houses}
+              </a>
+            </li>
+            <li>
+              <a href="#experience" className="link-underline">
+                {nav.experience}
+              </a>
+            </li>
+            <li>
+              <a href="#gallery" className="link-underline">
+                {nav.gallery}
+              </a>
+            </li>
+            <li>
+              <a href="#location" className="link-underline">
+                {nav.location}
+              </a>
+            </li>
+          </ul>
+          <div className="hidden md:flex items-center gap-5">
+            <button
+              type="button"
+              aria-label={nav.languageLabel}
+              onClick={() => setLanguage(language === "eng" ? "mne" : "eng")}
+              className="group relative grid h-9 w-[108px] cursor-pointer grid-cols-2 place-items-center overflow-hidden rounded-full border border-foreground/15 bg-background/40 p-1 text-[11px] uppercase leading-none tracking-[0.18em] text-foreground/70 shadow-sm transition-[background-color,border-color,transform] duration-300 hover:border-foreground/30 hover:bg-background/70 active:scale-[0.98]"
+            >
+              <span
+                aria-hidden
+                className={`absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-full bg-foreground/10 shadow-lift transition-transform duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] ${
+                  language === "mne" ? "translate-x-full" : "translate-x-0"
+                }`}
+              />
+              <span
+                className={`relative z-10 cursor-pointer text-center transition-colors duration-500 ${
+                  language === "eng" ? "text-foreground" : "text-muted-foreground"
+                }`}
+              >
+                ENG
+              </span>
+              <span
+                className={`relative z-10 cursor-pointer text-center transition-colors duration-500 ${
+                  language === "mne" ? "text-foreground" : "text-muted-foreground"
+                }`}
+              >
+                MNE
+              </span>
+            </button>
+            <a
+              href="#inquiry"
+              className="group inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.22em]"
+            >
+              <span className="link-underline">{nav.reserve}</span>
+              <span
+                aria-hidden
+                className="transition-transform duration-500 group-hover:translate-x-1"
+              >
+                →
+              </span>
+            </a>
+          </div>
+
+          <div className="flex items-center gap-2 md:hidden">
+            <button
+              type="button"
+              aria-label={nav.languageLabel}
+              onClick={() => setLanguage(language === "eng" ? "mne" : "eng")}
+              className="rounded-full border border-foreground/20 bg-background/70 px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] text-foreground/80"
+            >
+              {language.toUpperCase()}
+            </button>
+
+            <button
+              type="button"
+              aria-expanded={mobileOpen}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              onClick={() => setMobileOpen((prev) => !prev)}
+              className="inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-background/80 px-3 py-2 text-[10px] uppercase tracking-[0.2em] text-foreground/80"
+            >
+              {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+              Menu
+            </button>
+          </div>
+        </nav>
+
+        <div
+          className={`md:hidden overflow-hidden border-t border-border/60 bg-background/95 px-4 backdrop-blur-md transition-[max-height,opacity,padding] duration-300 ${
+            mobileOpen ? "max-h-[380px] py-5 opacity-100" : "max-h-0 py-0 opacity-0"
+          }`}
+        >
+          <div className="mx-auto flex max-w-[1400px] flex-col gap-5 text-[12px] uppercase tracking-[0.2em] text-foreground/85">
+            <a
+              href="#bungalows"
+              className="link-underline w-fit"
+              onClick={() => setMobileOpen(false)}
+            >
+              {nav.houses}
+            </a>
+            <a
+              href="#experience"
+              className="link-underline w-fit"
+              onClick={() => setMobileOpen(false)}
+            >
+              {nav.experience}
+            </a>
+            <a
+              href="#gallery"
+              className="link-underline w-fit"
+              onClick={() => setMobileOpen(false)}
+            >
+              {nav.gallery}
+            </a>
+            <a
+              href="#location"
+              className="link-underline w-fit"
+              onClick={() => setMobileOpen(false)}
+            >
+              {nav.location}
+            </a>
+            <div className="h-px w-full bg-border/80" />
+            <a
+              href="#inquiry"
+              onClick={() => setMobileOpen(false)}
+              className="inline-flex w-fit items-center gap-2 text-[11px] tracking-[0.22em]"
+            >
+              <span className="link-underline">{nav.reserve}</span>
+              <span aria-hidden>→</span>
+            </a>
+          </div>
+        </div>
+      </header>
+    </>
+  );
+}
