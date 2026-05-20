@@ -29,32 +29,126 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-    ],
-    links: [
+
+      { title: "Bungalovi Ulcinj | Smještaj Velika Plaža Montenegro Beach Resort" },
+
       {
-        rel: "stylesheet",
-        href: appCss,
+        name: "description",
+        content:
+          "Bungalovi u Ulcinju na Velikoj plaži. Smještaj uz more, terasa, prirodan ambijent i direktna rezervacija bez provizije.",
+      },
+
+      {
+        name: "keywords",
+        content:
+          "bungalovi ulcinj, smjestaj ulcinj, velika plaza ulcinj, apartmani ulcinj, beach resort montenegro, ulcinj accommodation",
+      },
+
+      { name: "author", content: "Montenegro Beach Resort" },
+      { name: "robots", content: "index, follow" },
+
+      { name: "geo.region", content: "ME-20" },
+      { name: "geo.placename", content: "Ulcinj" },
+      { name: "geo.position", content: "41.929953;19.212883" },
+      { name: "ICBM", content: "41.929953, 19.212883" },
+
+      { property: "og:title", content: "Bungalovi Ulcinj | Montenegro Beach Resort" },
+      {
+        property: "og:description",
+        content:
+          "Uživajte u bungalovima na Velikoj plaži u Ulcinju. Pogled na more, priroda i miran odmor.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://montenegrobeachresort.com" },
+      { property: "og:image", content: "https://montenegrobeachresort.com/og-image.jpg?v=2" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:site_name", content: "Montenegro Beach Resort" },
+      { property: "og:locale", content: "sr_ME" },
+
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Bungalovi Ulcinj | Montenegro Beach Resort" },
+      {
+        name: "twitter:description",
+        content:
+          "Smještaj na Velikoj plaži u Ulcinju. Direktna rezervacija bez provizije.",
+      },
+      { name: "twitter:image", content: "https://montenegrobeachresort.com/og-image.jpg" },
+
+      { name: "theme-color", content: "#0ea5e9" },
+    ],
+
+    links: [
+      { rel: "stylesheet", href: appCss },
+
+      { rel: "icon", href: "/favicon.ico" },
+      { rel: "icon", sizes: "16x16", href: "/favicon-16x16.png" },
+      { rel: "icon", sizes: "32x32", href: "/favicon-32x32.png" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
+
+      {
+        rel: "canonical",
+        href: "https://montenegrobeachresort.com/",
       },
     ],
   }),
+
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
 });
 
 function RootShell({ children }: { children: React.ReactNode }) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    name: "Montenegro Beach Resort",
+    description:
+      "Bungalovi na Velikoj plaži u Ulcinju. Smještaj uz more u prirodnom ambijentu.",
+    image: "https://montenegrobeachresort.com/og-image.jpg",
+    url: "https://montenegrobeachresort.com",
+    telephone: "+38263461761",
+    priceRange: "€€",
+
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Ulcinj",
+      addressCountry: "ME",
+      streetAddress: "Velika plaža",
+    },
+
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: "41.929953",
+      longitude: "19.212883",
+    },
+
+    sameAs: [
+      "https://www.instagram.com/bungalov__resorthome/",
+    ],
+
+    amenityFeature: [
+      { "@type": "LocationFeatureSpecification", name: "Beach Access", value: true },
+      { "@type": "LocationFeatureSpecification", name: "Sea View", value: true },
+      { "@type": "LocationFeatureSpecification", name: "Terrace", value: true },
+    ],
+  };
+
   return (
-    <html lang="en">
+    <html lang="sr-ME">
       <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18159045006" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'AW-18159045006');`,
+          }}
+        />
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
       </head>
       <body>
         {children}
